@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .fullbody {
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+        }
+
+        /* Nav CSS */
+        .nav {
+            max-width: 100%;
+            height: 45px;
+            background-color: #333333;
+            display: flex;
+            flex-wrap: wrap;
+            position: fixed; /* Fixed position for the navigation */
+            top: 0; /* Stick it to the top of the viewport */
+            width: 100%; /* Full width */
+        }
+
+        .logo {
+            max-width: 50%;
+            flex-basis: 50%;
+            height: 100%;
+        }
+
+        .navbtn {
+            max-width: 50%;
+            flex-basis: 50%;
+            height: 100%;
+        }
+
+        .navbtn ul {
+            max-width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        .navbtn ul a {
+            max-width: 70px;
+            flex-basis: 70px;
+            height: 100%;
+            text-decoration: none;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            color: #fff;
+            transition: background-color 0.3s ease; /* Add a transition effect for the background color */
+        }
+
+        .navbtn ul a li {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0;
+        }
+
+        .homebtn {
+            background-color: transparent; /* Make the Home button background transparent */
+        }
+
+        /* Add a class for the active button */
+        .active {
+            background-color: #77af3b;
+        }
+
+        /* Sections Styles */
+        .section {
+            max-width: 100%;
+            padding: 20px;
+            text-align: center;
+            transition: opacity 0.5s ease-in-out; /* Apply fade effect */
+            display: none; /* Start with sections hidden */
+        }
+
+        .home {
+            background-color: rgb(252 252 252);
+            margin-top: 45px; /* Adjust for the fixed navigation */
+        }
+
+        .bio {
+            background-color: #aaa;
+        }
+
+        .portfolio {
+            background-color: #ddd;
+            height: 800px; /* Set the Portfolio section height to 800px */
+        }
+
+        .reviews {
+            background-color: #ccc;
+        }
+
+        /* Footer */
+        footer {
+            max-width: 100%;
+            height: 50px;
+            background-color: #333;
+            position: fixed; /* Fixed position for the footer */
+            bottom: 0; /* Stick it to the bottom of the viewport */
+            width: 100%; /* Full width */
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JbYR-A Web Dev</title>
+</head>
+<body>
+    <div class="fullbody">
+        <div class="nav">
+            <div class="logo">
+            </div>
+            <div class="navbtn">
+                <ul>
+                    <!-- Add a class to the Home button for the active state -->
+                    <a class="nav-link homebtn" href="#home-section"><li><span>Home</span></li></a>
+                    <a class="nav-link" href="#bio-section"><li><span>Bio</span></li></a>
+                    <a class="nav-link" href="#portfolio-section"><li><span>Portfolio</span></li></a>
+                    <a class="nav-link" href="#reviews-section"><li><span>Reviews</span></li></a>
+                </ul>
+            </div>
+        </div>
+        <section class="home section" id="home-section">
+            <!-- Home section content -->
+            <h2>Welcome to Your Website</h2>
+            <p>This is the Home section of your website.</p>
+        </section>
+        <section class="bio section" id="bio-section">
+            <!-- Bio section content -->
+            <h2>About Me</h2>
+            <p>Write your bio and information about yourself here.</p>
+        </section>
+        <section class="portfolio section" id="portfolio-section">
+            <!-- Portfolio section content -->
+            <h2>Our Portfolio</h2>
+            <p>Showcase your projects and work here.</p>
+        </section>
+        <section class="reviews section" id="reviews-section">
+            <!-- Reviews section content -->
+            <h2>Customer Reviews</h2>
+            <p>Display testimonials and feedback from your clients.</p>
+        </section>
+        <footer>
+            <p>&copy; 2023 Your Website. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // JavaScript to toggle section visibility and update the active button
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+
+        navLinks.forEach((link) => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent default behavior of anchor tag
+
+                // Get the target section's ID from the link's href
+                const targetId = link.getAttribute('href').substring(1);
+                
+                // Hide all sections
+                sections.forEach((section) => {
+                    section.style.display = 'none';
+                });
+                
+                // Show the target section
+                document.getElementById(targetId).style.display = 'block';
+
+                // Remove the 'active' class from all buttons
+                navLinks.forEach((navLink) => {
+                    navLink.classList.remove('active');
+                });
+
+                // Add the 'active' class to the clicked button
+                link.classList.add('active');
+            });
+        });
+        
+        // Ensure the Home section is always visible and its button is active
+        document.getElementById('home-section').style.display = 'block';
+        document.querySelector('.homebtn').classList.add('active');
+    </script>
+</body>
+</html>
